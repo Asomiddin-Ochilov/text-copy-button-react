@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+const App = () => {
 
-function App() {
+  const [value,setValue] = useState('')
+  const [copy,setCopy] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div className="input_group">
+      <i class="bi bi-link-45deg"></i>
+      <input type="text" onChange={(e)=>setValue(e.target.value)} />
+      <CopyToClipboard text={value}
+          onCopy={() =>setCopy(true)}>
+           <button className={`${copy ? 'copied' : 'copy' }`}>
+             {copy ? 'Copied' : "Copy"}
+           </button>
+        </CopyToClipboard>
+     
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
